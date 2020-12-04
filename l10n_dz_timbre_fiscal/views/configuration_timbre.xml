@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Configuration timbre : Form -->
+    <record model="ir.ui.view" id="l10ndz_config_timbre_form">
+        <field name="name">l10ndz.config.timbre.form</field>
+        <field name="model">config.timbre</field>
+        <field name="arch" type="xml">
+            <form string="Timbre" edit="true" create="false" delete="false">
+                <sheet>
+                    <group>
+                        <group name="config_timbre" string="Configuration timbre">
+                            <field name="name" class="oe_inline"/>
+                            <field name="tranche" class="oe_inline"/>
+                            <field name="prix" class="oe_inline"/>
+                        </group>
+                        <group name="config_compt_contrparti" string="Configuration comptes contreparties">
+                            <field name="sale_timbre" class="oe_inline"/>
+                            <field name="purchase_timbre" class="oe_inline"/>
+                        </group>
+                    </group>
+                    <group name="mnt_min_max_ttc"  string="Montant Minimal/Maximal TTC">
+                        <field name="mnt_min" class="oe_inline"/>
+                        <field name="mnt_max" class="oe_inline"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_timbre">
+        <field name="name">Configuration Timbre</field>
+        <field name="res_model">config.timbre</field>
+        <field name="view_mode">form</field>
+        <field name="res_id">1</field>
+    </record>
+
+    <menuitem   id="menu_timbre" 
+                action="action_timbre" 
+                name="Configuration timbre" 
+                parent="account.menu_finance_configuration" 
+                sequence="1"
+                groups="account.group_account_manager"/>
+    
+</odoo>

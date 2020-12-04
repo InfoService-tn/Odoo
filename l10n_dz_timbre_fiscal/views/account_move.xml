@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Ajouter les champs payment_mode, amount_timbre, total_timber -->
+    <record id="view_account_move_inherit_form" model="ir.ui.view">
+        <field name="name">view.account.move.inherit.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Ajouter en dessous de Conditions de paiement -->
+            <xpath expr="//field[@name='journal_id']" position="before">
+                <field name="payment_mode" attrs="{'invisible':[('type', 'not in', ['out_invoice', 'out_refund'])]}"/>
+                <field name="payment_mode_type" invisible="1"/>
+            </xpath>
+            <!-- Ajouter en dessous de Total -->
+            <xpath expr="//group[@class='oe_subtotal_footer']/field[@name='amount_total']" position="after">
+                <field name="amount_timbre" attrs="{'invisible':[('payment_mode_type', '!=', 'cash')]}"/>
+                <field name="total_timbre" attrs="{'invisible':[('payment_mode_type', '!=', 'cash')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
